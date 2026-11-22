@@ -1,0 +1,21 @@
+﻿produto,inicio,fim,n_meses,meses_ausentes,minimo_repeticoes_mes,min_coletas,max_coletas,elegivel
+Arroz,2022-09-01,2026-08-01,48,0,4,73,126,True
+Açúcar,2022-09-01,2026-08-01,48,0,4,30,81,True
+Banana Nanica,2022-09-01,2026-08-01,48,0,4,8,30,True
+Banana Prata,2022-09-01,2026-08-01,48,0,4,12,29,True
+Batata,2022-09-01,2026-08-01,48,0,4,18,31,True
+Café,2022-09-01,2026-08-01,48,0,4,67,134,True
+Carne Bovina Acém,2025-03-01,2026-08-01,18,0,1,18,27,False
+Carne Bovina Coxão Mole,2022-09-01,2026-08-01,48,0,4,18,29,True
+Carne Suína Pernil,2025-03-01,2026-08-01,18,0,1,17,28,False
+Farinha de Trigo,2022-09-01,2026-08-01,48,0,4,60,103,True
+Feijão,2022-09-01,2026-08-01,48,0,4,69,112,True
+Frango Peito,2025-03-01,2026-08-01,18,0,1,17,28,False
+Frango Sobrecoxa,2025-03-01,2026-08-01,18,0,1,16,28,False
+Leite,2022-09-01,2026-08-01,48,0,4,58,110,True
+Macarrão,2025-03-01,2026-08-01,18,0,1,40,75,False
+Manteiga,2022-09-01,2026-08-01,48,0,4,66,114,True
+Ovo,2025-03-01,2026-08-01,18,0,1,18,28,False
+Pão Francês,2022-09-01,2026-08-01,48,0,4,16,26,True
+Tomate,2022-09-01,2026-08-01,48,0,4,18,31,True
+Óleo,2022-09-01,2026-08-01,48,0,4,45,82,True
