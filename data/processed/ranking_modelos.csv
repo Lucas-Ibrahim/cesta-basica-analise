@@ -1,0 +1,9 @@
+cenario,modelo,produtos_vencedores
+Múltiplos passos,Ridge Regression,7
+Múltiplos passos,Holt-Winters,4
+Múltiplos passos,Random Forest,2
+Múltiplos passos,Baseline,1
+Um passo,Baseline,6
+Um passo,Ridge Regression,5
+Um passo,Holt-Winters,2
+Um passo,Random Forest,1

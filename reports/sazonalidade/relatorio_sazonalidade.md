@@ -11,8 +11,8 @@ Produtos estáveis nas sensibilidades: Tomate, Leite.
 - Fonte: `data/processed/cesta_mensal.csv`, produzida na etapa anterior, sem alteração.
 - Período: 09/2022 a 08/2026; 780 pares produto/mês; 20 produtos.
 - Unidade de análise: mediana mensal do PPK (preço por kg ou unidade padrão do produto). Cada mês recebe o mesmo peso; coletas individuais não são tratadas como réplicas independentes.
-- Critério definido antes dos testes: pelo menos 36 meses consecutivos, sem preenchimento de lacunas. As 14 séries elegíveis têm 48 meses e quatro observações de cada mês do calendário.
-- Séries curtas, excluídas da inferência: Carne Bovina Acém, Carne Suína Pernil, Frango Peito, Frango Sobrecoxa, Macarrão, Ovo. Seus valores permanecem nas tabelas descritivas.
+- Critério definido antes dos testes: pelo menos 36 meses consecutivos, sem preenchimento de lacunas. Séries elegíveis: 14. Contagens observadas de meses por série elegível: 48.
+- Séries fora da inferência pelo critério de cobertura: Carne Bovina Acém, Carne Suína Pernil, Frango Peito, Frango Sobrecoxa, Macarrão, Ovo. Seus valores permanecem nas tabelas descritivas.
 - Preços nominais, sem correção por inflação. A tendência estatística não equivale a um deflator.
 
 ## Métodos
@@ -37,9 +37,9 @@ Os meses abaixo são extremos do **ciclo ajustado**, não os extremos brutos de 
 | Banana Prata | Ago | Fev | 8.8% | 0.3227 | Não |
 | Batata | Nov | Mai | 32.3% | 0.3524 | Não |
 | Pão Francês | Nov | Mai | 1.5% | 0.9555 | Não |
-| Café | Jul | Jan | 5.2% | 0.983 | Não |
-| Açúcar | Mai | Nov | 1.6% | 0.983 | Não |
 | Arroz | Ago | Fev | 3.4% | 0.983 | Não |
+| Açúcar | Mai | Nov | 1.6% | 0.983 | Não |
+| Café | Jul | Jan | 5.2% | 0.983 | Não |
 | Carne Bovina Coxão Mole | Jul | Jan | 3.5% | 0.983 | Não |
 | Manteiga | Nov | Mai | 0.3% | 0.983 | Não |
 
@@ -51,7 +51,7 @@ Os meses abaixo são extremos do **ciclo ajustado**, não os extremos brutos de 
 O diagnóstico Ljung–Box apresentou p < 0,05 em 12 das 14 séries. Isso indica que a regressão simples deixa dependência temporal em parte dos resíduos. Por esse motivo, os resultados são apresentados como evidência exploratória, não como confirmação definitiva. As sensibilidades ajudam a avaliar estabilidade, mas não substituem mais anos de observação ou modelos de erros temporais mais completos.
 
 ## Interpretação dos gráficos
-- **01 — Cobertura:** diferencia quatro ciclos disponíveis das séries de apenas 18 meses.
+- **01 — Cobertura:** mostra a quantidade de meses observados e distingue séries elegíveis pela cor.
 - **02 — Evolução e tendência:** permite separar movimentos persistentes de oscilações de curto prazo. Escalas são próprias por produto, portanto alturas absolutas entre painéis não são comparáveis.
 - **03 — Calendário sazonal:** azul representa preço abaixo do nível sem ciclo; vermelho, acima. Asterisco identifica evidência após BH. É uma estimativa suavizada, não uma média bruta.
 - **04 — Amplitudes:** compara oscilações em termos percentuais. Amplitude elevada, isoladamente, não implica significância.
