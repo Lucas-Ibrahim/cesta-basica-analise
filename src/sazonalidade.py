@@ -165,9 +165,11 @@ def graficos(df, cov, res, perfil, comp):
         g["ciclo"] = g.mes.dt.year - (g.mes.dt.month < 9).astype(int)
         for ciclo, bloco in g.groupby("ciclo"):
             idx = bloco.ppk_mediana / np.exp(np.log(bloco.ppk_mediana).mean()) * 100
-            d = pd.DataFrame({"mes": bloco.mes.dt.month, "idx": idx}).sort_values("mes")
-            ax.plot(d.mes, d.idx, marker=".", label=f"Set/{ciclo}–Ago/{ciclo+1}")
-        ax.set_title(nome); ax.set_xticks(range(1,13), MESES, rotation=45); ax.set_ylabel("Índice: média geométrica do ciclo = 100")
+            posicao = (bloco.mes.dt.month - 9) % 12
+            ax.plot(posicao, idx, marker=".", label=f"Set/{ciclo}–Ago/{ciclo+1}")
+        ax.set_title(nome)
+        ax.set_xticks(range(12), np.roll(MESES, -8), rotation=45)
+        ax.set_ylabel("Índice: média geométrica do ciclo = 100")
     axes.flat[0].legend(fontsize=8)
     fig.suptitle("Repetição entre ciclos — normalização não remove tendência dentro do ciclo", y=1.02)
     salvar_fig(fig, "06_comparacao_ciclos.png")
@@ -203,6 +205,8 @@ def relatorio(df, cov, res):
             ". Não são classificados como evidência no teste principal, ainda que alguma especificação alternativa seja significativa.")
     diagnosticos = int((res.p_ljungbox12 < .05).sum())
     interpretacao = "\n".join(achados)
+    meses_elegiveis = sorted(res.n_meses.unique())
+    contagens = ", ".join(map(str, meses_elegiveis))
     texto = f"""# Análise de sazonalidade dos alimentos — Integrante 3
 
 ## Pergunta e conclusão
@@ -216,8 +220,8 @@ Produtos estáveis nas sensibilidades: {', '.join(robustos.produto) or 'nenhum'}
 - Fonte: `data/processed/cesta_mensal.csv`, produzida na etapa anterior, sem alteração.
 - Período: {df.mes.min():%m/%Y} a {df.mes.max():%m/%Y}; {len(df)} pares produto/mês; {df.produto.nunique()} produtos.
 - Unidade de análise: mediana mensal do PPK (preço por kg ou unidade padrão do produto). Cada mês recebe o mesmo peso; coletas individuais não são tratadas como réplicas independentes.
-- Critério definido antes dos testes: pelo menos 36 meses consecutivos, sem preenchimento de lacunas. As {len(res)} séries elegíveis têm 48 meses e quatro observações de cada mês do calendário.
-- Séries curtas, excluídas da inferência: {', '.join(cov.loc[~cov.elegivel, 'produto'])}. Seus valores permanecem nas tabelas descritivas.
+- Critério definido antes dos testes: pelo menos 36 meses consecutivos, sem preenchimento de lacunas. Séries elegíveis: {len(res)}. Contagens observadas de meses por série elegível: {contagens}.
+- Séries fora da inferência pelo critério de cobertura: {', '.join(cov.loc[~cov.elegivel, 'produto'])}. Seus valores permanecem nas tabelas descritivas.
 - Preços nominais, sem correção por inflação. A tendência estatística não equivale a um deflator.
 
 ## Métodos
@@ -239,7 +243,7 @@ Os meses abaixo são extremos do **ciclo ajustado**, não os extremos brutos de 
 O diagnóstico Ljung–Box apresentou p < 0,05 em {diagnosticos} das {len(res)} séries. Isso indica que a regressão simples deixa dependência temporal em parte dos resíduos. Por esse motivo, os resultados são apresentados como evidência exploratória, não como confirmação definitiva. As sensibilidades ajudam a avaliar estabilidade, mas não substituem mais anos de observação ou modelos de erros temporais mais completos.
 
 ## Interpretação dos gráficos
-- **01 — Cobertura:** diferencia quatro ciclos disponíveis das séries de apenas 18 meses.
+- **01 — Cobertura:** mostra a quantidade de meses observados e distingue séries elegíveis pela cor.
 - **02 — Evolução e tendência:** permite separar movimentos persistentes de oscilações de curto prazo. Escalas são próprias por produto, portanto alturas absolutas entre painéis não são comparáveis.
 - **03 — Calendário sazonal:** azul representa preço abaixo do nível sem ciclo; vermelho, acima. Asterisco identifica evidência após BH. É uma estimativa suavizada, não uma média bruta.
 - **04 — Amplitudes:** compara oscilações em termos percentuais. Amplitude elevada, isoladamente, não implica significância.

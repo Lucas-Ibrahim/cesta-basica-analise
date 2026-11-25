@@ -1,6 +1,6 @@
 {
-  "entrada": "data\\processed\\cesta_mensal.csv",
-  "sha256": "f6021978b244762c24748771a317dd711ad4f430b14477cedc60ffe84e7ab4d0",
+  "entrada": "data/processed/cesta_mensal.csv",
+  "sha256": "2cfc41a886826846205fedec5e5cace5dfac263139ddb9e799a4d0f3f7d6418a",
   "minimo_meses": 36,
   "periodo": 12,
   "janela_stl": 13,
@@ -8,7 +8,7 @@
   "hac_sensibilidade": 6,
   "alpha": 0.05,
   "ajuste": "fdr_bh",
-  "python": "3.14.7",
+  "python": "3.14.8",
   "pandas": "3.1.1",
   "numpy": "2.5.5",
   "scipy": "1.18.1",
